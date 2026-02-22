@@ -9,8 +9,9 @@ const rejected = document.getElementById('rejected')
 
 
 const allCardSection = document.querySelector("#all-cards-section")
+const mainSection = document.querySelector("main")
 const filterSection = document.getElementById("filter-section")
-console.log(allCardSection.children.length)
+console.log(mainSection)
 // counter calculation
 total.innerText = allCardSection.children.length
 function calculationCounter() {
@@ -19,7 +20,7 @@ function calculationCounter() {
 }
 // step 1 create interview list by clicked interview button
 
-allCardSection.addEventListener("click", function (event) {
+mainSection.addEventListener("click", function (event) {
     const parentNode = event.target.parentNode.parentNode.parentNode
     console.log(parentNode)
     if (event.target.classList.contains("interview-btn")) {
