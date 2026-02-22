@@ -16,7 +16,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-base-200 h-screen">
+<body class="bg-base-200 ">
     <header class="w-10/12 mx-auto pt-8 ">
         <h1 class="text-3xl font-bold mb-5">Job Application Tracker</h1>
         <div class="card-section grid grid-cols-3 gap-5">
@@ -43,7 +43,7 @@
             <!-- available section -->
             <div class="available-section flex justify-between">
                 <h4 class="font-medium text-2xl">Available Jobs</h4>
-                <p id="total-job-counter" class="font-medium"></p>
+                <p  class="font-medium"><span id="interview-count" class="hidden"></span> <span id="rejected-count" class="hidden"></span> <span id="total-job-counter" ></span></p>
             </div>
 
             <div class="toggle-section my-5 space-x-3">
@@ -57,10 +57,13 @@
 
         </section>
 
+        <!-- empty job -->
+            <div id="empty-card" class="">
+                
+            </div>
 
         <!-- filter section -->
         <section id="filter-section" class="w-10/12 mx-auto space-y-8 hidden">
-
         </section>
 
         <!-- job card section -->
@@ -87,7 +90,7 @@
                 </div>
 
                 <div class="right">
-                    <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                    <button class=" btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <!-- card 2 -->
@@ -108,7 +111,7 @@
                 </div>
 
                 <div class="right">
-                    <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                    <button class=" btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <!-- card 3 -->
@@ -130,7 +133,7 @@
                 </div>
 
                 <div class="right">
-                    <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <!-- card 4 -->
@@ -151,7 +154,7 @@
                 </div>
 
                 <div class="right">
-                    <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <!-- card 5 -->
@@ -172,7 +175,7 @@
                 </div>
 
                 <div class="right">
-                    <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <!-- card 6 -->
@@ -194,7 +197,7 @@
                 </div>
 
                 <div class="right">
-                    <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <!-- card 7 -->
@@ -216,7 +219,7 @@
                 </div>
 
                 <div class="right">
-                    <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <!-- card 8 -->
@@ -238,7 +241,7 @@
                 </div>
 
                 <div class="right">
-                    <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
                 </div>
             </div>
         </section>
