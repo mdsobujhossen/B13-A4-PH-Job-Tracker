@@ -8,6 +8,9 @@ const total = document.getElementById('total')
 const interview = document.getElementById('interview')
 const rejected = document.getElementById('rejected')
 
+// jobs counter 
+let interviewCount = 0
+let rejectedCount = 0
 
 const allCardSection = document.querySelector("#all-cards-section")
 const mainSection = document.querySelector("main")
@@ -16,9 +19,21 @@ console.log(mainSection)
 // counter calculation
 total.innerText = allCardSection.children.length
 function calculationCounter() {
+    interviewCount = interviewList.length
+    rejectedCount = rejectedList.length
     interview.innerText = interviewList.length
     rejected.innerText = rejectedList.length
 }
+
+
+// job counter 
+const Jobcounter = document.getElementById("total-job-counter")
+const totalJobsNumber = allCardSection.children.length
+
+Jobcounter.innerHTML = `
+${totalJobsNumber} Jobs
+`
+console.log(Jobcounter)
 
 
 // step 2 toggle style on the filter button
@@ -35,19 +50,36 @@ function filtering(id) {
     const selected = document.getElementById(id)
     selected.classList.add("btn-primary")
 
-    if (id == "interview-filter-btn") {
+    if (id === "interview-filter-btn") {
         allCardSection.classList.add("hidden")
         filterSection.classList.remove("hidden")
         renderInterview()
+
+
+        // job counter 
+        Jobcounter.innerHTML = `
+        ${interviewCount} of ${totalJobsNumber} Jobs
+        `
     }
-    else if(id == "rejected-filter-btn"){
+    else if (id === "rejected-filter-btn") {
         allCardSection.classList.add("hidden")
         filterSection.classList.remove("hidden")
         renderRejected()
+
+        // job counter 
+        Jobcounter.innerHTML = `
+        ${rejectedCount} of ${totalJobsNumber} Jobs
+        `
     }
-    else if(id == "all-filter-btn"){
+    else if (id === "all-filter-btn") {
         allCardSection.classList.remove("hidden")
         filterSection.classList.add("hidden")
+
+        // jobs count
+        Jobcounter.innerHTML = `
+        ${totalJobsNumber} Jobs
+         `
+        console.log(Jobcounter)
     }
 
 
@@ -63,7 +95,7 @@ function filtering(id) {
 
 mainSection.addEventListener("click", function (event) {
     const parentNode = event.target.parentNode.parentNode.parentNode
-    console.log(parentNode)
+
     if (event.target.classList.contains("interview-btn")) {
         const jobName = parentNode.querySelector(".job-name ").innerText
         const jobType = parentNode.querySelector(".job-type ").innerText
@@ -80,19 +112,19 @@ mainSection.addEventListener("click", function (event) {
         }
         const jobNameExist = interviewList.find(item => item.jobName == cardInfo.jobName)
         if (!jobNameExist) {
-            interviewList.push(cardInfo)
             cardInfo.status = "Interview"
+            interviewList.push(cardInfo)
         }
-        
+
         // removing this interview card if it has in the rejected card
-        rejectedList = rejectedList.filter(item=> item.jobName != cardInfo.jobName)
+        rejectedList = rejectedList.filter(item => item.jobName != cardInfo.jobName)
 
 
         // rendering the rejeced list after removing rejected to interview
-        if(curentstatus = "rejected-filter-btn"){
+        if (curentstatus === "rejected-filter-btn") {
             renderRejected()
         }
-        
+
         calculationCounter()
     }
     else if (event.target.classList.contains("rejected-btn")) {
@@ -117,17 +149,17 @@ mainSection.addEventListener("click", function (event) {
 
 
         // removing this rejected card if it has in the interview card
-        interviewList = interviewList.filter(item=> item.jobName != cardInfo.jobName)
+        interviewList = interviewList.filter(item => item.jobName != cardInfo.jobName)
 
 
         // rendering the interview list after removing interview to rejected
-        if(curentstatus = "interview-filter-btn"){
+        if (curentstatus === "interview-filter-btn") {
             renderInterview()
         }
 
         calculationCounter()
     }
-    
+
 })
 
 
