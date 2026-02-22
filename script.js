@@ -1,5 +1,6 @@
-const interviewList = []
-const rejectedList = []
+let interviewList = []
+let rejectedList = []
+let curentstatus = "all"
 
 
 // counter board
@@ -18,6 +19,46 @@ function calculationCounter() {
     interview.innerText = interviewList.length
     rejected.innerText = rejectedList.length
 }
+
+
+// step 2 toggle style on the filter button
+const allFilterBtn = document.getElementById("all-filter-btn")
+const interviewFilterBtn = document.getElementById("interview-filter-btn")
+const rejectedFilterBtn = document.getElementById("rejected-filter-btn")
+function filtering(id) {
+    allFilterBtn.classList.remove("btn-primary")
+    interviewFilterBtn.classList.remove("btn-primary")
+    rejectedFilterBtn.classList.remove("btn-primary")
+
+    curentstatus = id
+
+    const selected = document.getElementById(id)
+    selected.classList.add("btn-primary")
+
+    if (id == "interview-filter-btn") {
+        allCardSection.classList.add("hidden")
+        filterSection.classList.remove("hidden")
+        renderInterview()
+    }
+    else if(id == "rejected-filter-btn"){
+        allCardSection.classList.add("hidden")
+        filterSection.classList.remove("hidden")
+        renderRejected()
+    }
+    else if(id == "all-filter-btn"){
+        allCardSection.classList.remove("hidden")
+        filterSection.classList.add("hidden")
+    }
+
+
+}
+
+
+
+
+
+
+
 // step 1 create interview list by clicked interview button
 
 mainSection.addEventListener("click", function (event) {
@@ -41,9 +82,18 @@ mainSection.addEventListener("click", function (event) {
         if (!jobNameExist) {
             interviewList.push(cardInfo)
             cardInfo.status = "Interview"
-            calculationCounter()
         }
+        
+        // removing this interview card if it has in the rejected card
+        rejectedList = rejectedList.filter(item=> item.jobName != cardInfo.jobName)
 
+
+        // rendering the rejeced list after removing rejected to interview
+        if(curentstatus = "rejected-filter-btn"){
+            renderRejected()
+        }
+        
+        calculationCounter()
     }
     else if (event.target.classList.contains("rejected-btn")) {
         const jobName = parentNode.querySelector(".job-name ").innerText
@@ -61,44 +111,27 @@ mainSection.addEventListener("click", function (event) {
         }
         const jobNameExist = rejectedList.find(item => item.jobName == cardInfo.jobName)
         if (!jobNameExist) {
-            rejectedList.push(cardInfo)
             cardInfo.status = "rejected"
-            calculationCounter()
+            rejectedList.push(cardInfo)
         }
+
+
+        // removing this rejected card if it has in the interview card
+        interviewList = interviewList.filter(item=> item.jobName != cardInfo.jobName)
+
+
+        // rendering the interview list after removing interview to rejected
+        if(curentstatus = "interview-filter-btn"){
+            renderInterview()
+        }
+
+        calculationCounter()
     }
-    console.log(rejectedList)
+    
 })
 
 
-// step 2 toggle style on the filter button
-const allFilterBtn = document.getElementById("all-filter-btn")
-const interviewFilterBtn = document.getElementById("interview-filter-btn")
-const rejectedFilterBtn = document.getElementById("rejected-filter-btn")
-function filtering(id) {
-    allFilterBtn.classList.remove("btn-primary")
-    interviewFilterBtn.classList.remove("btn-primary")
-    rejectedFilterBtn.classList.remove("btn-primary")
 
-    const selected = document.getElementById(id)
-    selected.classList.add("btn-primary")
-
-    if (id == "interview-filter-btn") {
-        allCardSection.classList.add("hidden")
-        filterSection.classList.remove("hidden")
-        renderInterview()
-    }
-    else if(id == "rejected-filter-btn"){
-        allCardSection.classList.add("hidden")
-        filterSection.classList.remove("hidden")
-        renderRejected()
-    }
-    else if(id == "all-filter-btn"){
-        allCardSection.classList.remove("hidden")
-        filterSection.classList.add("hidden")
-    }
-
-
-}
 
 
 
