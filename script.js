@@ -25,12 +25,12 @@ Jobcounter.innerText = allCardSection.children.length + " jobs"
 function calculationCounter() {
     interview.innerText = interviewList.length
     rejected.innerText = rejectedList.length
-    
+
     // job counter
-    interviewCount.innerText = interviewList.length + " of" 
-    rejectedCount.innerText =  rejectedList.length + " of"
+    interviewCount.innerText = interviewList.length + " of"
+    rejectedCount.innerText = rejectedList.length + " of"
     Jobcounter.innerText = allCardSection.children.length + " jobs"
-    
+
     total.innerText = allCardSection.children.length
 }
 
@@ -76,12 +76,12 @@ function filtering(id) {
         allCardSection.classList.remove("hidden")
         filterSection.classList.add("hidden")
 
-       // job counter 
+        // job counter 
         interviewCount.classList.add("hidden")
         rejectedCount.classList.add("hidden")
 
         // hide empty job card
-        emptyCard.innerHTML =""
+        emptyCard.innerHTML = ""
     }
 
 
@@ -164,16 +164,18 @@ mainSection.addEventListener("click", function (event) {
 
 
     // deleting job cards 
-    if(event.target.classList.contains("delete-btn")){
-        const deleteBtnPrentNode = event.target.parentNode.parentNode.parentNode
+    if (event.target.classList.contains("delete-btn")) {
+        // const deleteBtnPrentNode = event.target.parentNode.parentNode.parentNode
+        const deleteBtnPrentNode = event.target.closest(".job-card")
+        const 
         deleteJobName = deleteBtnPrentNode.querySelector(".job-name").innerText
 
-        interviewList = interviewList.filter(item=> item.jobName !== deleteJobName)
+        interviewList = interviewList.filter(item => item.jobName !== deleteJobName)
 
-        rejectedList = rejectedList.filter(item=> item.jobName !== deleteJobName)
-
-       deleteBtnPrentNode.remove()
-       calculationCounter()
+        rejectedList = rejectedList.filter(item => item.jobName !== deleteJobName)
+        
+        deleteBtnPrentNode.remove()
+        calculationCounter()
     }
 
 })
@@ -187,7 +189,7 @@ mainSection.addEventListener("click", function (event) {
 
 function renderInterview() {
     // empty card
-    emptyCard.innerHTML =""
+    emptyCard.innerHTML = ""
     if (interviewList.length <= 0) {
         emptyCard.innerHTML = `
         <div class=" bg-white rounded-md flex justify-center items-center ">
@@ -200,7 +202,7 @@ function renderInterview() {
         `
     }
 
-     
+
     filterSection.innerHTML = ""
     for (const interview of interviewList) {
         const div = document.createElement("div")
@@ -221,7 +223,7 @@ function renderInterview() {
             </div>
 
             <div class="right">
-                <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
             </div>
         
         `
@@ -236,7 +238,7 @@ function renderInterview() {
 function renderRejected() {
 
     // empty card
-     emptyCard.innerHTML =""
+    emptyCard.innerHTML = ""
     if (rejectedList.length <= 0) {
         emptyCard.innerHTML = `
         <div class=" bg-white rounded-md flex justify-center items-center ">
@@ -248,7 +250,7 @@ function renderRejected() {
                 </div>
         `
     }
-    
+
     filterSection.innerHTML = ""
     for (const rejected of rejectedList) {
         const div = document.createElement("div")
@@ -269,7 +271,7 @@ function renderRejected() {
             </div>
 
             <div class="right">
-                <button class="btn rounded-full shadow w-8 h-8"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn rounded-full shadow w-8 h-8"><i class="delete-btn fa-solid fa-trash"></i></button>
             </div>
         
         `
