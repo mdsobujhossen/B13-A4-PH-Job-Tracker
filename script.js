@@ -102,19 +102,19 @@ mainSection.addEventListener("click", function (event) {
         const jobName = parentNode.querySelector(".job-name ").innerText
         const jobType = parentNode.querySelector(".job-type ").innerText
         const jobBenefit = parentNode.querySelector(".job-benefit ").innerText
-        const status = parentNode.querySelector(".job-status ").innerText
+        const status = parentNode.querySelector(".job-status ")
         const jobDescription = parentNode.querySelector(".description ").innerText
 
         const cardInfo = {
             jobName,
             jobType,
             jobBenefit,
-            status,
+            status:"Interview",
             jobDescription
         }
         const jobNameExist = interviewList.find(item => item.jobName == cardInfo.jobName)
         if (!jobNameExist) {
-            cardInfo.status = "Interview"
+            status.innerText = "Interview"
             interviewList.push(cardInfo)
         }
 
@@ -133,19 +133,19 @@ mainSection.addEventListener("click", function (event) {
         const jobName = parentNode.querySelector(".job-name ").innerText
         const jobType = parentNode.querySelector(".job-type ").innerText
         const jobBenefit = parentNode.querySelector(".job-benefit ").innerText
-        const status = parentNode.querySelector(".job-status ").innerText
+        const status = parentNode.querySelector(".job-status ")
         const jobDescription = parentNode.querySelector(".description ").innerText
 
         const cardInfo = {
             jobName,
             jobType,
             jobBenefit,
-            status,
+            status:"Rejected",
             jobDescription
         }
         const jobNameExist = rejectedList.find(item => item.jobName == cardInfo.jobName)
         if (!jobNameExist) {
-            cardInfo.status = "rejected"
+            status.innerText = "Rejected"
             rejectedList.push(cardInfo)
         }
 
