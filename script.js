@@ -18,6 +18,10 @@ console.log(allCardSection.childNodes)
 const mainSection = document.querySelector("main")
 const filterSection = document.getElementById("filter-section")
 
+// optional all cards
+const allCards = document.getElementsByClassName("job-card")
+console.log(allCards)
+
 const emptyCard = document.getElementById("empty-card")
 total.innerText = allCardSection.children.length
 Jobcounter.innerText = allCardSection.children.length + " jobs"
