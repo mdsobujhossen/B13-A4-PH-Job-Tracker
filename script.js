@@ -168,7 +168,7 @@ mainSection.addEventListener("click", function (event) {
 
 
     // deleting job cards 
-    if (event.target.classList.contains("delete-btn")) {
+    if (event.target.closest(".delete-btn")) {
         // const deleteBtnPrentNode = event.target.parentNode.parentNode.parentNode
         const deleteBtnPrentNode = event.target.closest(".job-card")
         const 
